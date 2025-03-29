@@ -6,13 +6,7 @@ import { flushSync } from "react-dom";
 
 export default function useSetTimeoutAnimation() {
     const [progress, setProgress] = useState(0);
-    const [startTimeMs, setStartTimeMs] = useState(0);
     const [numUpdates, setNumUpdates] = useState(0);
-
-    useEffect(() => {
-        setStartTimeMs(Date.now());
-        setNumUpdates(0);
-    }, []);
 
     useEffect(() => {
         const timeoutId = setTimeout(() => {
@@ -27,7 +21,6 @@ export default function useSetTimeoutAnimation() {
 
     return {
         progress,
-        startTimeMs,
         numUpdates,
     };
 }

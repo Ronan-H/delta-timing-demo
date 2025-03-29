@@ -8,7 +8,7 @@ import useSetTimeoutAnimation from "@/hooks/useSetTimeoutAnimation";
 export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center w-screen h-screen p-8 gap-8">
-      <h1 className="text-3xl font-bold">Delta Timing Comparison</h1>
+      <h1 className="text-3xl font-bold text-center">Delta Timing Comparison</h1>
 
       <Stopwatch />
 

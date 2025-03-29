@@ -6,13 +6,9 @@ import { flushSync } from "react-dom";
 
 export default function useSetIntervalAnimation() {
     const [progress, setProgress] = useState(0);
-    const [startTimeMs, setStartTimeMs] = useState(0);
     const [numUpdates, setNumUpdates] = useState(0);
 
     useEffect(() => {
-        setStartTimeMs(Date.now());
-        setNumUpdates(0);
-
         const interval = setInterval(() => {
             flushSync(() => {
                 setProgress((prev) => (prev + PROGRESS_INCREMENT) % 1);
@@ -25,7 +21,6 @@ export default function useSetIntervalAnimation() {
 
     return {
         progress,
-        startTimeMs,
         numUpdates,
     };
 }

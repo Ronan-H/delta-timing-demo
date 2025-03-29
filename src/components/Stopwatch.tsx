@@ -1,16 +1,12 @@
 
 'use client'
 
+import { UNIVERSAL_START_TIME_MS } from "@/hooks/animation-constants";
 import { useState, useEffect } from "react";
 import { flushSync } from "react-dom";
 
 export function Stopwatch() {
-    const [startTimeMs, setStartTimeMs] = useState(Date.now());
     const [counter, setCounter] = useState(0);
-
-    useEffect(() => {
-        setStartTimeMs(Date.now());
-    }, []);
 
     useEffect(() => {
         const requestId = requestAnimationFrame(() => {
@@ -22,7 +18,7 @@ export function Stopwatch() {
         return () => cancelAnimationFrame(requestId);
     }, [counter]);
 
-    const elapsedMs = Date.now() - startTimeMs;
+    const elapsedMs = Date.now() - UNIVERSAL_START_TIME_MS;
     const elapsedSec = Math.floor(elapsedMs / 1000);
 
     return (

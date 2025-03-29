@@ -1,10 +1,11 @@
 'use client'
 
+import { UNIVERSAL_START_TIME_MS } from "@/hooks/animation-constants";
+
 type ProgressAnimationProps = {
     title: string;
     useProgressFunction: () => {
         progress: number;
-        startTimeMs?: number;
         numUpdates?: number;
     };
 };
@@ -12,14 +13,14 @@ type ProgressAnimationProps = {
 export default function ProgressAnimation(props: ProgressAnimationProps) {
     const { title, useProgressFunction } = props;
 
-    const { progress, startTimeMs, numUpdates } = useProgressFunction();
+    const { progress, numUpdates } = useProgressFunction();
 
     const fps = (() => {
-        if (startTimeMs == null || numUpdates == null) {
+        if (numUpdates == null) {
             return null;
         }
 
-        const elapsedMs = Date.now() - startTimeMs;
+        const elapsedMs = Date.now() - UNIVERSAL_START_TIME_MS;
         const elapsedSec = elapsedMs / 1000;
         return numUpdates / elapsedSec;
     })();
